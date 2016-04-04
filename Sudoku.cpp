@@ -194,16 +194,30 @@ void Sudoku::flip(int n){
 	if(n==0)
 	{
 		for(i=0;i<9;i++)
-		{table[0+i]=temp[72+i];table[9+i]=temp[63+i];
-		table[18+i]=temp[54+i];table[27+i]=temp[45+i];
+		{table[0+i]=temp[72+i];
+		table[9+i]=temp[63+i];
+		table[18+i]=temp[54+i];
+		table[27+i]=temp[45+i];	
+		table[45+i]=temp[27+i];
+		table[54+i]=temp[18+i];
+		table[63+i]=temp[9+i];
+		table[72+i]=temp[0+i];
 		}
 	}
 	if(n==1)
 	{
-	for(i=0;i<9;i++)
-	{table[0+9*i]=temp[8+9*i];table[1+9*i]=temp[7+9*i];
-	table[2+9*i]=temp[6+9*i];table[3+9*i]=temp[5+9*i];
-	}
+		for(i=0;i<5;i++)
+		{
+		table[0+i]=temp[8-i]; table[8-i]=temp[0+i];
+		table[9+i]=temp[17-i];table[17-i]=temp[9+i];
+		table[18+i]=temp[26-i];table[26-i]=temp[18+i];
+		table[27+i]=temp[35-i];table[35-i]=temp[27+i];
+		table[36+i]=temp[44-i];table[44-i]=temp[36+i];
+		table[45+i]=temp[53-i];table[53-i]=temp[45+i];
+		table[54+i]=temp[62-i];table[62-i]=temp[54+i];
+		table[63+i]=temp[71-i];table[71-i]=temp[63+i];
+		table[72+i]=temp[80-i];table[80-i]=temp[72+i];	
+		}
 	}
 
 }
