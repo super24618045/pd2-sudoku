@@ -22,5 +22,6 @@ class Sudoku{
 		void transform();
 	private:
 	  int table[81];	
+	  int temps[81];
 	  int anscount;
 };

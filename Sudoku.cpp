@@ -57,6 +57,8 @@ void Sudoku::solve_2(int count){
 	if(count==81)
         {
         anscount++;
+	for(int j=0;j<81;j++)
+	{temps[j]=table[j];}
 	return;
 	}
         
@@ -78,7 +80,11 @@ void Sudoku::solve_2(int count){
 void Sudoku::checkAnscount(){
 	if(anscount==1)
 	{printf("1\n");
-	printOut();}
+		for(int j=0;j<81;j++)
+        	{printf("%2d",temps[j]);
+		if(j%9==8){printf("\n");}
+		}
+	}
 	if(anscount==0)
 	{printf("0");}
 	if(anscount>=2)
