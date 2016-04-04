@@ -1,6 +1,8 @@
 #include"Sudoku.h"
 using namespace std;
 
+void Sudoku::setAnscount(){
+anscount=0;}
 void Sudoku::giveQuestion(){
 	int i;
 	int temp[81]={0,4,0,2,5,0,0,0,8,0,3,0,4,0,9,1,7,0,0,0,0,0,8,1,2,0,0,0,0,6,0,0,0,7,2,0,0,0,0,6,0,4,0,0,0,0,1,2,0,0,0,3,0,0,0,0,3,8,1,0,0,0,0,0,6,4,9,0,2,0,1,0,7,0,0,0,4,5,0,9,0};
@@ -50,85 +52,43 @@ bool Sudoku::checkrepeat(int a,int n){
 		return repeat;
 }
 
-void Sudoku::solve(){
+void Sudoku::solve(int count){
 	
-	int i,j,anscount=0,end,first;
-	int fill[81];
-	int k=0;
-	bool blank[81];
-	bool retrieve[81];
-	for(i=0;i<81;i++)
-	{if(table[i]==0)
-		{first=i;//record the first blank//
-		break;
-		}
-	}
-	for(i=0;i<81;i++)
-	{
-	blank[i]=false;
-		if(table[i]==0)
-		{
-		blank[i]=true;
-		end=i;
-		}
-	retrieve[i]=false;
-	fill[i]=0;
-	}
-	///////
-	for(i=0;i<81;i++)
-	{
-	if(blank[i]==true)
-	{
-		fill[i]++;
-		//printf("%7d",i);
-		k++;if(k>50){break;}	
-		if(checkrepeat(fill[i],i)==true&&fill[i]==9)//dead road
-		{
-			retrieve[i]=true;
-		}
-		if(checkrepeat(fill[i],i)==false)//find next
-		{	
-			table[i]=fill[i];
-			if(i==end)//find and fill the last space 
-			{anscount++;//printf("%3d",anscount);
-			retrieve[i]=true;
-			}	
-		}	
-		if(retrieve[i]==true&&i!=first)//go backward
-		{	
-			
-			fill[i]=0;
-			retrieve[i]=false;
-			while(fill[i]==9||blank[i]!=true)	
-			{i--;
-				if(fill[i]==9&&blank[i]==true)
-				{retrieve[i]=true;}
-			if(i==first&&fill[i]==9){break;}
+	if(count==81)
+        {
+        anscount++;
+		if(anscount==1)
+		{printf("1\n");
+                	for(int j=0;j<81;j++)
+                	{
+			printf("%2d",table[j]);
+                	if(j%9==8){printf("\n");}
 			}
-			fill[i]++;printf("%d,%2d\n",fill[i],i);	
-		}
-		if(checkrepeat(fill[i],i)==true&&fill[i]!=9)//try
-                {i--;/*printf("%3d,%d\n",i,fill[i+1]);*/}
-	}	
-	if(retrieve[first]==true)
-		{
-		break;
-		}
-		
+		return;
+		}	
+        	if(anscount==2)
+		{printf("2");
+		return;}
+        if(anscount>2)
+	{return;}
 	}
+        
+     	
+        if(table[count]==0)
+        {
+                for(int i=1;i<=9;++i)
+                {table[count]=i;
+                if(checkrepeat(table[count],count)==false)
+                {solve(count+1);}
+                }
+        table[count]=0;
+        }else{
+        solve(count+1);
+        }
+
 	
-	if(anscount==1)
-	{printf("1\n");
-	printOut();
-	}
-	if(anscount>=2)
-	{
-	printf("2");
-	}
-	if(anscount==0)
-	{
-	printf("0");
-	}
+	
+
 }
 void Sudoku::changeNum(int a,int b){
 	int temp[81];

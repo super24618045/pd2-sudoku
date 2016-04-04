@@ -2,7 +2,8 @@
 int main()
 {
 	Sudoku ss;
+	ss.setAnscount();
 	ss.readIn();
-	ss.solve();
+	ss.solve(0);
 	return 0;
 }
