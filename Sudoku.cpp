@@ -132,20 +132,16 @@ void Sudoku::changeNum(int a,int b){
 }
 
 void Sudoku::changeRow(int a,int b){
-	int temp[54];
+	int temp[81];
 	int i;
+	for(i=0;i<81;i++){temp[i]=table[i];}
 	for(i=0;i<27;i++)
 		{
-			temp[i]=table[i+27*a];
-			 temp[i+27]=table[i+27*b];
+			table[i+27*a]=temp[i+27*b];
+			table[i+27*b]=temp[i+27*a];
 
 		}
-	for(i=0;i<27;i++)
-		{
-			table[i+27*a]=temp[i+27];
-			table[i+27*b]=temp[i];
-
-		}
+	
 }
 void Sudoku::changeCol(int a,int b){
 
@@ -185,7 +181,6 @@ void Sudoku::rotate(int n){
 
 	}
 	n--;
-
 	}		
 }
 
