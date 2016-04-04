@@ -16,6 +16,7 @@ void Sudoku::readIn(){
 	for(int i=0;i<81;i++){
 	scanf("%d",&table[i]);
 	}
+setAnscount();
 }
 
 bool Sudoku::checkrepeat(int a,int n){
@@ -58,7 +59,8 @@ void Sudoku::solve_2(int count){
         {
         anscount++;
 	for(int j=0;j<81;j++)
-	{temps[j]=table[j];}
+	{temps[j]=table[j];
+	}
 	return;
 	}
         
@@ -91,7 +93,7 @@ void Sudoku::checkAnscount(){
 	{printf("2");}
 	}
 void Sudoku::solve(){
-	setAnscount();
+	
 	solve_2(0);
 	checkAnscount();
 	return;
