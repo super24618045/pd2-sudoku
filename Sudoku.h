@@ -9,7 +9,9 @@ class Sudoku{
 		void setAnscount();
 		void readIn();
 		bool checkrepeat(int a,int n);
-		void solve(int count);
+		void solve_2(int count);
+		void checkAnscount();
+		void solve();
 		void changeNum(int a,int b);
 		void changeRow(int a,int b);
 		void changeCol(int a,int b);

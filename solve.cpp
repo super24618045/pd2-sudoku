@@ -4,6 +4,6 @@ int main()
 	Sudoku ss;
 	ss.setAnscount();
 	ss.readIn();
-	ss.solve(0);
+	ss.solve();
 	return 0;
 }

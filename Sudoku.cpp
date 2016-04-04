@@ -52,25 +52,12 @@ bool Sudoku::checkrepeat(int a,int n){
 		return repeat;
 }
 
-void Sudoku::solve(int count){
+void Sudoku::solve_2(int count){
 	
 	if(count==81)
         {
         anscount++;
-		if(anscount==1)
-		{printf("1\n");
-                	for(int j=0;j<81;j++)
-                	{
-			printf("%2d",table[j]);
-                	if(j%9==8){printf("\n");}
-			}
-		return;
-		}	
-        	if(anscount==2)
-		{printf("2");
-		return;}
-        if(anscount>2)
-	{return;}
+	return;
 	}
         
      	
@@ -79,16 +66,29 @@ void Sudoku::solve(int count){
                 for(int i=1;i<=9;++i)
                 {table[count]=i;
                 if(checkrepeat(table[count],count)==false)
-                {solve(count+1);}
+                {solve_2(count+1);}
                 }
         table[count]=0;
         }else{
-        solve(count+1);
+        solve_2(count+1);
         }
 
-	
-	
 
+}
+void Sudoku::checkAnscount(){
+	if(anscount==1)
+	{printf("1\n");
+	printOut();}
+	if(anscount==0)
+	{printf("0");}
+	if(anscount>=2)
+	{printf("2");}
+	}
+void Sudoku::solve(){
+	setAnscount();
+	solve_2(0);
+	checkAnscount();
+	return;
 }
 void Sudoku::changeNum(int a,int b){
 	int temp[81];
