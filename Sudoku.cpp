@@ -18,6 +18,22 @@ void Sudoku::readIn(){
 	}
 
 }
+bool Sudoku::checksolveable(){
+	bool solve;
+	solve=true;
+	for(int i=0;i<81;i++)
+	{
+		if(table[i]!=0)
+		{
+			if(checkrepeat(table[i],i)==true)
+			solve=false;
+		}
+	}
+
+	return solve;
+
+
+}
 
 bool Sudoku::checkrepeat(int a,int n){
 
@@ -63,8 +79,6 @@ void Sudoku::solve_2(int count){
 	}
 	return;
 	}
-        
-     	
         if(table[count]==0)
         {
                 for(int i=1;i<=9;++i)
@@ -95,7 +109,8 @@ void Sudoku::checkAnscount(){
 void Sudoku::solve(){
 	
 	setAnscount();
-	solve_2(0);
+	if(checksolveable()==true)
+	{solve_2(0);}
 	checkAnscount();
 	return;
 }
